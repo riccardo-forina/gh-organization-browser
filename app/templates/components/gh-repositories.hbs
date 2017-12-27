@@ -1,5 +1,32 @@
 <div>
-  {{#each repositories as |repo|}}
+  <select onchange={{action "onChangeLanguage" value="target.value"}}>
+    {{#each languageChoices as |l|}}
+      <option
+        value={{l.value}}
+          selected={{l.selected}}
+      >
+        {{l.name}}
+      </option>
+    {{/each}}
+  </select>
+  <label>
+    {{input
+      type="checkbox"
+      name="showPublic"
+      checked=(readonly showPublic)
+      change=(action "onTogglePublic")
+    }} Show public repositories
+  </label>
+  <label>
+    {{input
+      type="checkbox"
+      name="showPrivate"
+      checked=(readonly showPrivate)
+      change=(action "onTogglePrivate")
+    }} Show private repositories
+  </label>
+
+  {{#each filteredRepositories as |repo|}}
    {{gh-repository
      name=repo.fullName
      url=repo.htmlUrl
