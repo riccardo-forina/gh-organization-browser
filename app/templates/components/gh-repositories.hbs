@@ -1,0 +1,11 @@
+<div>
+  {{#each repositories as |repo|}}
+   {{gh-repository
+     name=repo.fullName
+     url=repo.htmlUrl
+     branches=repo.branches
+     language=repo.language
+     private=repo.private
+   }}
+  {{/each}}
+</div>
