@@ -3,6 +3,10 @@ import Component from '@ember/component';
 const NO_LANG = 'unknown';
 
 export default Component.extend({
+  language: '',
+  showPublic: true,
+  showPrivate: true,
+
   init() {
     this._super(...arguments);
     this.languageChoices = [{
