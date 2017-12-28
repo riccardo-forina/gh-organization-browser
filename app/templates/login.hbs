@@ -1,3 +1,26 @@
 {{!-- app/templates/login.hbs --}}
+{{#bulma-hero isFullHeight=true}}
+  {{#bulma-hero-content}}
 
-<button onclick={{action "login"}}>Log in to GitHub</button>
+    {{#bulma-container class="has-text-centered"}}
+
+      {{#bulma-columns}}
+        {{#bulma-column isHalf=true isOffsetOneQuarter=true}}
+          <h3 class="title has-text-grey">Login</h3>
+          <p class="subtitle has-text-grey">Please login to proceed.</p>
+          <div class="box">
+            {{#bulma-control}}
+              {{bulma-button
+                class="is-fullwidth"
+                icon="fa fa-github"
+                label="Login with GitHub"
+                click=(action "login")
+                isDanger=true
+              }}
+            {{/bulma-control}}
+          </div>
+        {{/bulma-column}}
+      {{/bulma-columns}}
+    {{/bulma-container}}
+  {{/bulma-hero-content}}
+{{/bulma-hero}}

@@ -21,10 +21,13 @@ export default Component.extend({
   computeLanguages() {
     const language = this.get('language');
     this.get('repositories').then(repositories => {
-      const languages = repositories
-        .map((repo) => {
-          return repo.get('language') || NO_LANG;
-        });
+      const languages = Array.from(
+        new Set(repositories
+          .map((repo) => {
+            return repo.get('language') || NO_LANG;
+          })
+        )
+      );
       const languageChoices = [{
           name: 'All languages',
           value: '',

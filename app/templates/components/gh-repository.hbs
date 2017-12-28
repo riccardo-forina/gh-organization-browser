@@ -1,7 +1,82 @@
-<div>
-  {{name}}
-  {{url}}
-  {{branches.length}}
-  {{language}}
-  {{private}}
+<header class="card-header" onclick={{ action 'toggleExpand' }}>
+  <p class="card-header-title">
+    {{#if private}}
+      <span class="icon">
+            <i class="fa fa-lock" title="Private"></i>
+          </span>
+    {{/if}}
+    {{name}}
+  </p>
+  <a
+    class="card-header-icon"
+  >
+    <span class="icon">
+      <i class="fa {{ if expanded "fa-angle-up" "fa-angle-down"}}" aria-hidden="true"></i>
+    </span>
+  </a>
+</header>
+{{#if expanded}}
+<div class="card-content">
+  <div class="media">
+    <div class="media-content">
+      <p class="title is-4">
+        {{#if private}}
+          <span class="icon">
+            <i class="fa fa-lock" title="Private"></i>
+          </span>
+        {{/if}}
+        {{name}}
+      </p>
+      <p class="subtitle is-6"><a href="{{url}}">{{url}}</a></p>
+    </div>
+  </div>
+  <div class="content">
+    <p>{{description}}</p>
+
+    <div class="field is-grouped is-grouped-multiline">
+      {{#if language}}
+        <div class="control">
+          <div class="tags has-addons">
+            <div class="tag is-dark">
+              <span class="icon">
+                <i class="fa fa-code" title="Language"></i>
+              </span>
+            </div>
+            <div class="tag is-primary">{{language}}</div>
+          </div>
+        </div>
+      {{/if}}
+
+      {{#if branches}}
+        <div class="control">
+          <div class="tags has-addons">
+            <div class="tag is-dark">
+              <span class="icon">
+                <i class="fa fa-code-fork" title="Language"></i>
+              </span>
+            </div>
+            <div class="tag is-info">{{branches.length}}</div>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if branches}}
+      <div class="panel">
+        <div class="panel-heading">
+          Repositories
+        </div>
+        {{#each branches as |branch|}}
+          <div class="panel-block">
+            <span class="panel-icon">
+              <i class="fa fa-code-fork" title="Language"></i>
+            </span>
+            {{branch.name}}
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+
+  </div>
 </div>
+{{/if}}

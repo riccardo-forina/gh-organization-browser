@@ -1,13 +1,3 @@
-<h1>Welcome to the Demo App!</h1>
-
-API Key: {{config.apiKey}} <br />
-
-{{#if session.isAuthenticated}}
-  Authenticated <button onclick={{action "logout"}}>Log Out</button>
-{{else}}
-  Unauthenticated
-{{/if}}
-
-<hr />
-
+{{!-- app/templates/index.hbs --}}
 {{outlet}}
+

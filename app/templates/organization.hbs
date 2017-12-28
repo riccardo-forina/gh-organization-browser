@@ -1,13 +1,2 @@
 {{!-- app/templates/organization.hbs --}}
-
-{{gh-organization name=model.name avatarUrl=model.avatarUrl}}
-
-{{gh-repositories
-  repositories=model.githubRepositories
-  language=language
-  showPublic=showPublic
-  showPrivate=showPrivate
-  onChangeLanguage=(action "setLanguage")
-  onChangePublic=(action "togglePublic")
-  onChangePrivate=(action "togglePrivate")
-}}
+{{outlet}}

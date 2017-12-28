@@ -8,7 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('organization', { path: '/org/:org_name' });
+  this.route('organization', function() {
+    this.route('repositories', {path: '/:org_name'});
+  });
 });
 
 export default Router;

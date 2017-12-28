@@ -1,0 +1,69 @@
+{{#bulma-hero isInfo=true isFullHeight=fullHeight}}
+
+  {{#bulma-hero-header}}
+    <div class="container">
+
+      {{#bulma-nav}}
+
+        {{#bulma-nav-left}}
+          <div class="navbar-brand">
+            <a href="{{currentUser.htmlUrl}}" class="navbar-item">
+              <img src={{currentUser.avatarUrl}} />
+              &nbsp;{{currentUser.name}}
+            </a>
+          </div>
+        {{/bulma-nav-left}}
+
+        {{#bulma-nav-center}}
+        {{! nav items}}
+        {{/bulma-nav-center}}
+
+        {{#bulma-nav-right isMenu=true}}
+          <a class="nav-item" onclick={{action "logout"}}>
+            <span class="fa fa-sign-out"></span> Logout
+          </a>
+        {{/bulma-nav-right}}
+      {{/bulma-nav}}
+
+    </div>
+  {{/bulma-hero-header}}
+
+  {{#bulma-hero-content}}
+    {{#bulma-container class="has-text-centered"}}
+      {{#bulma-columns}}
+        {{#bulma-column isHalf=true isOffsetOneQuarter=true}}
+          <h3 class="title has-text-white">GitHub organization browser</h3>
+          <p class="subtitle has-text-white">
+            Show GitHub public and private repositories for a GitHub organization.
+          </p>
+          <div class="box">
+            <form {{action "searchOrganization" on="submit"}}>
+              <div class="field has-addons">
+                {{#bulma-control class="is-expanded"}}
+                  {{bulma-input
+                    required
+                    value=organization
+                    oninput=(action (mut organization) value="target.value")
+                    pattern=".{3,}"
+                    placeholder="Organization name, eg. github"
+                  }}
+                {{/bulma-control}}
+                {{#bulma-control}}
+                  <button
+                    class="button is-primary {{if isLoading "is-loading"}}"
+                    disabled={{isLoading}}
+                    type="submit">
+                    Search
+                  </button>
+                {{/bulma-control}}
+              </div>
+              {{#if hasError}}
+                <p class="help is-danger"><strong>{{initialOrganization}}</strong> does not exist or is not an organization.</p>
+              {{/if}}
+            </form>
+          </div>
+        {{/bulma-column}}
+      {{/bulma-columns}}
+    {{/bulma-container}}
+  {{/bulma-hero-content}}
+{{/bulma-hero}}

@@ -1,0 +1,28 @@
+{{app-hero
+  organization=organization
+  onSearch=(action "searchOrganization")
+}}
+{{#bulma-section}}
+  {{#bulma-container}}
+    {{#bulma-columns}}
+      {{#bulma-column isOneQuarter=true}}
+        {{gh-organization
+          name=model.name
+          login=model.login
+          avatarUrl=model.avatarUrl
+        }}
+      {{/bulma-column}}
+      {{#bulma-column}}
+        {{gh-repositories
+          repositories=model.githubRepositories
+          language=language
+          showPublic=showPublic
+          showPrivate=showPrivate
+          onChangeLanguage=(action "setLanguage")
+          onChangePublic=(action "togglePublic")
+          onChangePrivate=(action "togglePrivate")
+        }}
+      {{/bulma-column}}
+    {{/bulma-columns}}
+  {{/bulma-container}}
+{{/bulma-section}}
