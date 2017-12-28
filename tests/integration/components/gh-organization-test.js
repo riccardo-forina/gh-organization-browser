@@ -6,19 +6,16 @@ moduleForComponent('gh-organization', 'Integration | Component | gh organization
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('avatarUrl', 'avatarUrl');
+  this.set('name', 'name');
+  this.set('login', 'login');
+  this.render(hbs`{{gh-organization
+    avatarUrl=avatarUrl
+    name=name
+    login=login
+  }}`);
 
-  this.render(hbs`{{gh-organization}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#gh-organization}}
-      template block text
-    {{/gh-organization}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('img').attr('src'), 'avatarUrl');
+  assert.equal(this.$('h4').text().trim(''), 'name');
+  assert.equal(this.$('h6').text().trim(''), 'login');
 });
