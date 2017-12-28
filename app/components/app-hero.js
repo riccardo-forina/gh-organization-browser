@@ -6,6 +6,8 @@ export default Component.extend({
   organization: "",
   fullHeight: false,
   isLoading: false,
+  hasError: false,
+  initialOrganization: "",
 
   user: Ember.inject.service(),
   session: Ember.inject.service(),

@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    error(error, transition) {
+    error() {
       this.replaceWith('organization.index', {
         queryParams: {
           organization: this.get('organization'),
